@@ -10,19 +10,25 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+const allowedOrigins = [
+    'https://rishcraft.github.io/Delivery-Website/', // Your frontend domain
+    'https://delivery-backend-2ox1.onrender.com', // Backend domain
+    'http://localhost:3000' // Optional for local testing
+];
+
 const corsOptions = {
     origin: function (origin, callback) {
-        const allowedOrigins = ['https://delivery-backend-2ox1.onrender.com','https://rishcraft.github.io/Delivery-Website/','https://localhost:3000','https://localhost:3306'];
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    optionsSuccessStatus: 200,
+    optionsSuccessStatus: 200, // For legacy browser support
 };
 
 app.use(cors(corsOptions));
+
 
 // MySQL Setup
 const pool = mysql.createPool({
