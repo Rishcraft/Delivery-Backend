@@ -11,9 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const allowedOrigins = [
-    'https://rishcraft.github.io/Delivery-Website/', // Your frontend domain
-    'https://delivery-backend-2ox1.onrender.com', // Backend domain
-    'http://localhost:3000' // Optional for local testing
+    'https://rishcraft.github.io', // Frontend on GitHub Pages
+    'https://delivery-backend-2ox1.onrender.com', // Backend on Render
+    'http://localhost:3000', // Optional, for local testing
+    'http://localhost:3306'
 ];
 
 const corsOptions = {
@@ -21,12 +22,14 @@ const corsOptions = {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
+            console.error('Blocked by CORS:', origin); // Log blocked origin
             callback(new Error('Not allowed by CORS'));
         }
     },
     optionsSuccessStatus: 200, // For legacy browser support
 };
 
+// Apply CORS middleware
 app.use(cors(corsOptions));
 
 
