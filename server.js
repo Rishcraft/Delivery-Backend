@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 const corsOptions = {
     origin: function (origin, callback) {
-        const allowedOrigins = ['https://delivery-backend-2ox1.onrender.com','https://rishcraft.github.io/Delivery-Website/'];
+        const allowedOrigins = ['https://delivery-backend-2ox1.onrender.com','https://rishcraft.github.io/Delivery-Website/','https://localhost:3000','https://localhost:3306'];
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
